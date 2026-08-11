@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>API Settings // OmniTrack</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div>
+      <div class="brand"><i class="fa-solid fa-bolt"></i><span>OmniTrack</span></div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Übersicht</a></li>
+        <li><a href="creator.html" class="nav-link"><i class="fa-solid fa-user-astronaut"></i> Creator Lookup</a></li>
+        <li><a href="analytics.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Deep Analytics</a></li>
+        <li><a href="settings.html" class="nav-link active"><i class="fa-solid fa-key"></i> API Settings</a></li>
+      </ul>
+    </div>
+    <div class="api-badge" id="global-api-badge"></div>
+  </aside>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1>API-Schlüssel & Schnittstellen</h1>
+        <p>Hinterlege Keys für echte Live-Datenabrufe</p>
+      </div>
+    </div>
+
+    <div class="card" style="max-width: 700px;">
+      <div class="form-group">
+        <label><i class="fa-brands fa-youtube" style="color:var(--yt);"></i> YouTube Data API v3 Key</label>
+        <input type="password" id="key-yt" placeholder="AIzaSy...">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-brands fa-tiktok" style="color:var(--tt);"></i> TikTok RapidAPI / Display Key</label>
+        <input type="password" id="key-tt" placeholder="RapidAPI Key für TikTok Data">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-brands fa-instagram" style="color:var(--ig);"></i> Instagram Graph / RapidAPI Key</label>
+        <input type="password" id="key-ig" placeholder="RapidAPI Key für Instagram Data">
+      </div>
+
+      <button class="btn" onclick="saveKeys()"><i class="fa-solid fa-floppy-disk"></i> Schlüssel Speichern</button>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('key-yt').value = localStorage.getItem('key_youtube') || '';
+      document.getElementById('key-tt').value = localStorage.getItem('key_tiktok') || '';
+      document.getElementById('key-ig').value = localStorage.getItem('key_instagram') || '';
+    });
+
+    function saveKeys() {
+      localStorage.setItem('key_youtube', document.getElementById('key-yt').value.trim());
+      localStorage.setItem('key_tiktok', document.getElementById('key-tt').value.trim());
+      localStorage.setItem('key_instagram', document.getElementById('key-ig').value.trim());
+      alert('API-Schlüssel erfolgreich im Browser gespeichert!');
+      location.reload();
+    }
+  </script>
+</body>
+</html>
